@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNotSeeMe2024 | Pro CODM Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
+
+        :root {
+            --neon-purple: #bc13fe;
+            --metallic-silver: #C0C0C0;
+            --dark-bg: #0a0a0c;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        .neon-border {
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(188, 19, 254, 0.1) 0%, rgba(10, 10, 12, 1) 100%);
+        }
+
+        .stat-card {
+            background: rgba(192, 192, 192, 0.05);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--neon-purple);
+        }
+
+        .armory-card {
+            background: linear-gradient(145deg, #1a1a1f, #0a0a0c);
+            border: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        .glitch-effect:hover {
+            text-shadow: 2px 0 var(--neon-purple), -2px 0 #00ffff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="font-orbitron text-xl font-black tracking-tighter italic text-white">
+            UNotSeeMe<span class="text-[#bc13fe]">2024</span>
+        </div>
+        <div class="space-x-6 hidden md:flex text-sm font-bold uppercase tracking-widest">
+            <a href="#stats" class="hover:text-[#bc13fe] transition">Intel</a>
+            <a href="#armory" class="hover:text-[#bc13fe] transition">Armory</a>
+            <a href="#" class="bg-[#bc13fe] px-4 py-1 rounded-sm text-black">Recruit</a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-4 hero-gradient">
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
+        
+        <h2 class="font-orbitron text-sm md:text-xl tracking-[0.5em] text-gray-400 uppercase mb-2">Tier-1 Operator</h2>
+        <h1 class="font-orbitron text-6xl md:text-9xl font-black italic glitch-effect mb-4 leading-none">
+            5.0 KD <span class="text-[#bc13fe]">SLAYER</span>
+        </h1>
+        <p class="max-w-md text-gray-400 font-medium tracking-wide border-l-2 border-[#bc13fe] pl-4">
+            Dominating the competitive CODM circuit. High-sens aggressive entry fragger. Top 1% Global Rank.
+        </p>
+        
+        <div class="mt-10 flex gap-4">
+            <button class="px-8 py-3 bg-[#bc13fe] text-black font-black uppercase skew-x-[-10deg] hover:bg-white transition">Watch Clips</button>
+            <button class="px-8 py-3 border border-white text-white font-black uppercase skew-x-[-10deg] hover:bg-white hover:text-black transition">Stats</button>
+        </div>
+    </section>
+
+    <section id="stats" class="py-20 px-6 max-w-6xl mx-auto">
+        <h3 class="font-orbitron text-2xl mb-10 inline-block border-b-2 border-[#bc13fe]">LIVE COMBAT STATS</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat-card p-8">
+                <p class="text-xs uppercase tracking-widest text-gray-400">Current Rank</p>
+                <h4 class="text-5xl font-black font-orbitron italic">LVL 165</h4>
+                <p class="text-[#bc13fe] text-sm mt-2 font-bold">LEGENDARY TIER</p>
+            </div>
+            <div class="stat-card p-8">
+                <p class="text-xs uppercase tracking-widest text-gray-400">Deployment</p>
+                <h4 class="text-5xl font-black font-orbitron italic">1,000+</h4>
+                <p class="text-gray-400 text-sm mt-2">TOTAL GAMES PLAYED</p>
+            </div>
+            <div class="stat-card p-8">
+                <p class="text-xs uppercase tracking-widest text-gray-400">Precision</p>
+                <h4 class="text-5xl font-black font-orbitron italic">34.2%</h4>
+                <p class="text-gray-400 text-sm mt-2">HEADSHOT RATIO</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="armory" class="py-20 bg-zinc-900/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h3 class="font-orbitron text-2xl mb-10 text-right inline-block w-full border-r-4 border-[#bc13fe] pr-4">PERSONAL ARMORY</h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="armory-card p-6 rounded-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-2 bg-[#bc13fe] text-black font-black text-xs italic">META SLAYER</div>
+                    <h4 class="text-3xl font-black italic mb-4 text-[#bc13fe]">BP50 <span class="text-white text-sm opacity-50">/ ASSAULT</span></h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Muzzle</span> <span class="text-white font-bold">Agency Suppressor</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Barrel</span> <span class="text-white font-bold">Leroy Custom</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Stock</span> <span class="text-white font-bold">Folded Stock</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Laser</span> <span class="text-white font-bold">Aim Assist Laser</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Ammunition</span> <span class="text-white font-bold">60 Round Fast Mag</span></li>
+                    </ul>
+                </div>
+
+                <div class="armory-card p-6 rounded-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-2 bg-gray-400 text-black font-black text-xs italic">CQC BEAST</div>
+                    <h4 class="text-3xl font-black italic mb-4 text-[#bc13fe]">USS9 <span class="text-white text-sm opacity-50">/ SMG</span></h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Barrel</span> <span class="text-white font-bold">Tac Short Barrel</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Underbarrel</span> <span class="text-white font-bold">Bruen Angled Grip</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Rear Grip</span> <span class="text-white font-bold">Stippled Grip Tape</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Perk</span> <span class="text-white font-bold">Slight of Hand</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-1"><span>Ammunition</span> <span class="text-white font-bold">45 Round Mag</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center border-t border-white/10">
+        <div class="flex justify-center gap-6 mb-6 text-xl">
+            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-discord"></i></a>
+        </div>
+        <p class="text-xs text-gray-600 font-orbitron uppercase tracking-widest">&copy; 2024 UNotSeeMe2024. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
