@@ -37,6 +37,12 @@
             background: rgba(192, 192, 192, 0.05);
             backdrop-filter: blur(10px);
             border-left: 4px solid var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(188, 19, 254, 0.1);
+            transform: translateY(-5px);
         }
 
         .armory-card {
@@ -47,55 +53,83 @@
         .glitch-effect:hover {
             text-shadow: 2px 0 var(--neon-purple), -2px 0 #00ffff;
         }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-purple); }
     </style>
 </head>
 <body>
 
     <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="font-orbitron text-xl font-black tracking-tighter italic text-white">
+        <div class="font-orbitron text-xl font-black tracking-tighter italic text-white uppercase">
             UNotSeeMe<span class="text-[#bc13fe]">2024</span>
         </div>
         <div class="space-x-6 hidden md:flex text-sm font-bold uppercase tracking-widest">
             <a href="#stats" class="hover:text-[#bc13fe] transition">Intel</a>
             <a href="#armory" class="hover:text-[#bc13fe] transition">Armory</a>
-            <a href="#" class="bg-[#bc13fe] px-4 py-1 rounded-sm text-black">Recruit</a>
+            <a href="https://store.callofdutymobile.com" target="_blank" class="bg-[#bc13fe] px-4 py-1 rounded-sm text-black hover:bg-white transition">Verify Account</a>
         </div>
     </nav>
 
     <section class="relative h-screen flex flex-col justify-center items-center text-center px-4 hero-gradient">
         <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
         
-        <h2 class="font-orbitron text-sm md:text-xl tracking-[0.5em] text-gray-400 uppercase mb-2">Tier-1 Operator</h2>
-        <h1 class="font-orbitron text-6xl md:text-9xl font-black italic glitch-effect mb-4 leading-none">
-            5.0 KD <span class="text-[#bc13fe]">SLAYER</span>
+        <h2 class="font-orbitron text-sm md:text-xl tracking-[0.5em] text-gray-400 uppercase mb-2">Tactical Operator Active</h2>
+        <h1 class="font-orbitron text-6xl md:text-9xl font-black italic glitch-effect mb-4 leading-none uppercase">
+            5.0 KD <span class="text-[#bc13fe]">Slayer</span>
         </h1>
         <p class="max-w-md text-gray-400 font-medium tracking-wide border-l-2 border-[#bc13fe] pl-4">
-            Dominating the competitive CODM circuit. High-sens aggressive entry fragger. Top 1% Global Rank.
+            High-tier competitive CODM player. Specializing in aggressive entry-fragging and tactical map control.
         </p>
         
         <div class="mt-10 flex gap-4">
-            <button class="px-8 py-3 bg-[#bc13fe] text-black font-black uppercase skew-x-[-10deg] hover:bg-white transition">Watch Clips</button>
-            <button class="px-8 py-3 border border-white text-white font-black uppercase skew-x-[-10deg] hover:bg-white hover:text-black transition">Stats</button>
+            <a href="#stats" class="px-8 py-3 bg-[#bc13fe] text-black font-black uppercase skew-x-[-10deg] hover:bg-white transition cursor-pointer">View Intel</a>
+            <a href="#armory" class="px-8 py-3 border border-white text-white font-black uppercase skew-x-[-10deg] hover:bg-white hover:text-black transition cursor-pointer">Armory</a>
         </div>
     </section>
 
     <section id="stats" class="py-20 px-6 max-w-6xl mx-auto">
-        <h3 class="font-orbitron text-2xl mb-10 inline-block border-b-2 border-[#bc13fe]">LIVE COMBAT STATS</h3>
+        <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+            <div>
+                <h3 class="font-orbitron text-2xl inline-block border-b-2 border-[#bc13fe]">LIVE COMBAT STATS</h3>
+                <p class="text-gray-500 uppercase tracking-tighter mt-2 italic font-bold">
+                    ID: <span id="display-id" class="text-white">***WUN</span>
+                </p>
+            </div>
+            <div class="bg-zinc-800/50 px-4 py-2 border-r-4 border-[#bc13fe]">
+                <span class="text-xs text-gray-400 block uppercase">Current MP Standing</span>
+                <span id="display-rank-top" class="font-orbitron font-black text-xl text-white italic">PRO IV</span>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="stat-card p-8">
-                <p class="text-xs uppercase tracking-widest text-gray-400">Current Rank</p>
-                <h4 class="text-5xl font-black font-orbitron italic">LVL 165</h4>
-                <p class="text-[#bc13fe] text-sm mt-2 font-bold">LEGENDARY TIER</p>
+            <div class="stat-card p-8 relative overflow-hidden group">
+                <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-25 transition">
+                    <i class="fas fa-medal text-8xl"></i>
+                </div>
+                <p class="text-xs uppercase tracking-widest text-gray-400">Operator Level</p>
+                <h4 id="display-level" class="text-6xl font-black font-orbitron italic">168</h4>
+                <p class="text-[#bc13fe] text-sm mt-2 font-bold uppercase">Prestige Status</p>
             </div>
-            <div class="stat-card p-8">
+
+            <div class="stat-card p-8 relative overflow-hidden group">
+                <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-25 transition">
+                    <i class="fas fa-crosshairs text-8xl"></i>
+                </div>
+                <p class="text-xs uppercase tracking-widest text-gray-400">Rank Tier</p>
+                <h4 id="display-rank" class="text-6xl font-black font-orbitron italic">PRO IV</h4>
+                <p class="text-gray-400 text-sm mt-2 uppercase">Ranked Season 2024</p>
+            </div>
+
+            <div class="stat-card p-8 relative overflow-hidden group">
+                <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-25 transition">
+                    <i class="fas fa-skull text-8xl"></i>
+                </div>
                 <p class="text-xs uppercase tracking-widest text-gray-400">Deployment</p>
-                <h4 class="text-5xl font-black font-orbitron italic">1,000+</h4>
-                <p class="text-gray-400 text-sm mt-2">TOTAL GAMES PLAYED</p>
-            </div>
-            <div class="stat-card p-8">
-                <p class="text-xs uppercase tracking-widest text-gray-400">Precision</p>
-                <h4 class="text-5xl font-black font-orbitron italic">34.2%</h4>
-                <p class="text-gray-400 text-sm mt-2">HEADSHOT RATIO</p>
+                <h4 class="text-6xl font-black font-orbitron italic">1,000+</h4>
+                <p class="text-gray-400 text-sm mt-2 uppercase">Games Confirmed</p>
             </div>
         </div>
     </section>
@@ -136,10 +170,32 @@
         <div class="flex justify-center gap-6 mb-6 text-xl">
             <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-youtube"></i></a>
             <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-discord"></i></a>
+            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-instagram"></i></a>
         </div>
         <p class="text-xs text-gray-600 font-orbitron uppercase tracking-widest">&copy; 2024 UNotSeeMe2024. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        async function updateStats() {
+            try {
+                const response = await fetch('stats.json');
+                if (!response.ok) throw new Error('No local stats file found');
+                const data = await response.json();
+                
+                if(data.level) document.getElementById('display-level').innerText = data.level;
+                if(data.rank) {
+                    document.getElementById('display-rank').innerText = data.rank;
+                    document.getElementById('display-rank-top').innerText = data.rank;
+                }
+                if(data.playerID) document.getElementById('display-id').innerText = data.playerID;
+                
+                console.log('Stats synchronized successfully.');
+            } catch (err) {
+                console.log('Using default hardcoded stats.');
+            }
+        }
+        updateStats();
+    </script>
 
 </body>
 </html>
