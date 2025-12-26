@@ -3,190 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>UNS2024 | MASTER III OPERATOR</title>
+    <title>UNS2024 // TERMINAL</title>
+    
     <meta name="theme-color" content="#0a0a0c">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="manifest.json">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
-        :root { --neon-purple: #bc13fe; --dark: #0a0a0c; }
-        body { background-color: var(--dark); color: white; font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap');
+        :root { --neon: #bc13fe; --dark: #0a0a0c; --gold: #eab308; }
+        
+        body { background-color: var(--dark); color: white; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* Loading Screen Styles */
+        #loader {
+            position: fixed; inset: 0; background: var(--dark); z-index: 100;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease-out;
+        }
+        .loader-bar { width: 200px; height: 2px; background: rgba(188, 19, 254, 0.2); position: relative; overflow: hidden; margin-top: 20px; }
+        .loader-progress { position: absolute; height: 100%; background: var(--neon); width: 0%; transition: width 0.4s; box-shadow: 0 0 10px var(--neon); }
+
+        /* Tactical HUD Effects */
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(188, 19, 254, 0.15); }
+        .delta-up { color: #22c55e; font-size: 0.65rem; font-weight: 800; margin-left: 4px; }
+        .delta-down { color: #ef4444; font-size: 0.65rem; font-weight: 800; margin-left: 4px; }
         
-        /* Tactical HUD Elements */
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(188, 19, 254, 0.2); }
-        .neon-text { text-shadow: 0 0 15px rgba(188, 19, 254, 0.7); }
-        .scanline { width: 100%; height: 100px; z-index: 10; position: absolute; background: linear-gradient(0deg, transparent 0%, rgba(188, 19, 254, 0.05) 50%, transparent 100%); animation: move 4s linear infinite; pointer-events: none; }
-        @keyframes move { 0% { top: -100px; } 100% { top: 100%; } }
-        
-        .victory-card { border-right: 8px solid #eab308; background: linear-gradient(90deg, rgba(234, 179, 8, 0.05) 0%, transparent 100%); }
-        .skew-btn { transform: skewX(-15deg); transition: all 0.3s ease; }
-        .skew-btn:hover { transform: skewX(-15deg) scale(1.05); background: white; color: black; }
+        .scanline { width: 100%; height: 2px; background: rgba(188, 19, 254, 0.1); position: fixed; top: 0; z-index: 10; animation: scan 6s linear infinite; pointer-events: none; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+        .hidden-terminal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .terminal-active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
+
+    <div id="loader">
+        <div class="font-orbitron text-xs tracking-[0.5em] text-[#bc13fe] animate-pulse">INITIALIZING SECURE LINK...</div>
+        <div class="loader-bar"><div id="progress" class="loader-progress"></div></div>
+        <div id="status-text" class="text-[10px] text-gray-600 mt-2 font-mono uppercase tracking-tighter">Bypassing Cache [0%]</div>
+    </div>
+
     <div class="scanline"></div>
 
-    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex justify-between items-center border-b border-[#bc13fe]/20">
-        <div class="font-orbitron font-black italic text-xl tracking-tighter uppercase">
-            UNS<span class="text-[#bc13fe]">2024</span> <span class="text-[10px] text-gray-500 ml-2 italic">v5.0</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <button onclick="shareIntel()" class="w-10 h-10 rounded-full glass border border-[#bc13fe]/40 flex items-center justify-center text-[#bc13fe]">
-                <i class="fas fa-share-nodes"></i>
-            </button>
-        </div>
-    </nav>
-
-    <section class="relative min-h-screen flex flex-col justify-center items-center p-6 text-center">
-        <div class="mb-4 inline-block px-3 py-1 glass border-l-4 border-[#bc13fe] text-[#bc13fe] text-[10px] font-orbitron uppercase tracking-widest animate-pulse">
-            Identity Verified: Ghost-Jawbone [Master III]
-        </div>
+    <main id="content" class="hidden-terminal">
         
-        <h1 class="font-orbitron text-7xl md:text-9xl font-black italic tracking-tighter uppercase mb-2 neon-text">
-            Lvl <span id="lvl">169</span>
-        </h1>
-        <p class="text-gray-400 font-bold tracking-[0.4em] text-xs mb-10 uppercase italic">S4-S5 2025 // Global Slayer Status</p>
+        <nav class="p-6 flex justify-between items-center glass border-b border-[#bc13fe]/30 sticky top-0 z-40">
+            <div class="font-orbitron font-black text-xl italic tracking-tighter">UNS<span class="text-[#bc13fe]">2024</span></div>
+            <div id="time-display" class="text-[10px] text-gray-500 font-mono">03:10:06 GMT</div>
+        </nav>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl mb-12">
-            <div class="glass p-5 text-left border-l-4 border-[#bc13fe]">
-                <p class="text-[10px] text-gray-500 uppercase font-black">K/D Ratio</p>
-                <h2 class="text-3xl font-orbitron font-black italic text-[#bc13fe]">4.29</h2>
+        <section class="p-6 text-center pt-12">
+            <div class="inline-block px-4 py-1 glass border-l-4 border-[#bc13fe] mb-6">
+                <span class="text-[10px] font-orbitron text-[#bc13fe] tracking-widest uppercase italic">Level 169 // Master III</span>
             </div>
-            <div class="glass p-5 text-left border-l-4 border-[#bc13fe]">
-                <p class="text-[10px] text-gray-500 uppercase font-black">Accuracy</p>
-                <h2 class="text-3xl font-orbitron font-black italic">26.57%</h2>
-            </div>
-            <div class="glass p-5 text-left border-l-4 border-[#bc13fe]">
-                <p class="text-[10px] text-gray-500 uppercase font-black">MVP Medals</p>
-                <h2 class="text-3xl font-orbitron font-black italic">381</h2>
-            </div>
-            <div class="glass p-5 text-left border-l-4 border-[#bc13fe]">
-                <p class="text-[10px] text-gray-500 uppercase font-black">Total Games</p>
-                <h2 class="text-3xl font-orbitron font-black italic">1,084</h2>
-            </div>
-        </div>
-    </section>
+            
+            <h1 class="font-orbitron text-8xl font-black italic tracking-tighter mb-2">
+                <span id="kd-main">4.29</span><span class="text-[2rem] text-[#bc13fe] align-top" id="kd-delta"></span>
+            </h1>
+            <p class="text-gray-500 font-bold tracking-[0.4em] text-xs uppercase mb-12">S4-S5 Meta Slayer</p>
 
-    <section class="py-10 px-6 max-w-5xl mx-auto">
-        <div class="glass p-8 border-l-4 border-white/20">
-            <h3 class="font-orbitron text-sm mb-8 tracking-[0.4em] text-[#bc13fe] uppercase italic">Rapid Ascent Log (26/12/25)</h3>
-            <div class="relative">
-                <div class="absolute left-2 top-0 h-full w-[1px] bg-white/10"></div>
-                
-                <div class="relative pl-10 mb-8">
-                    <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#bc13fe] shadow-[0_0_15px_#bc13fe]"></div>
-                    <p class="text-[10px] text-gray-500 font-bold uppercase">03:00 AM GMT</p>
-                    <h4 class="text-2xl font-orbitron font-black italic uppercase">Master III Reached</h4>
-                    <p class="text-xs text-[#bc13fe] uppercase font-bold italic">Top 0.1% Climb Speed: 5 Match Efficiency</p>
+            <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto mb-12">
+                <div class="glass p-4 text-left border-l-4 border-[#bc13fe]">
+                    <p class="text-[10px] text-gray-500 font-black uppercase">Lifetime Kills</p>
+                    <div class="flex items-baseline">
+                        <h2 id="kills-main" class="text-2xl font-orbitron font-black italic">21,165</h2>
+                        <span id="kills-delta" class="delta-up"></span>
+                    </div>
                 </div>
-
-                <div class="relative pl-10 opacity-30">
-                    <div class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-gray-600"></div>
-                    <p class="text-[10px] text-gray-500 font-bold uppercase">02:15 AM GMT</p>
-                    <h4 class="text-2xl font-orbitron font-black italic uppercase">Master I Deployment</h4>
+                <div class="glass p-4 text-left border-l-4 border-white">
+                    <p class="text-[10px] text-gray-500 font-black uppercase">Combat MVP</p>
+                    <h2 id="mvp-main" class="text-2xl font-orbitron font-black italic">381</h2>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-20 px-6 max-w-6xl mx-auto">
-        <h3 class="font-orbitron text-xl mb-10 tracking-[0.3em] text-[#bc13fe] uppercase italic">Ghost-Jawbone Armory</h3>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            <div class="glass p-6 rounded-lg relative overflow-hidden">
-                <div class="absolute right-[-20px] top-[-10px] opacity-10 font-orbitron text-6xl font-black">PRIMARY</div>
-                <h4 class="text-4xl font-black italic font-orbitron mb-2">BP50</h4>
-                <p class="text-xs text-gray-500 uppercase font-bold">Max Versatility Build</p>
-            </div>
-            <div class="glass p-6 rounded-lg relative overflow-hidden">
-                <div class="absolute right-[-20px] top-[-10px] opacity-10 font-orbitron text-6xl font-black">SUPPORT</div>
-                <h4 class="text-4xl font-black italic font-orbitron text-[#bc13fe]">ROAD MONGREL</h4>
-                <p class="text-xs text-gray-500 uppercase font-bold">RPD LMG Variant</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-            <div class="glass p-4 text-center border-b-2 border-[#bc13fe]"><p class="text-[9px] text-gray-500 uppercase">Perk 1</p><span class="text-xs font-bold uppercase">Pin Point</span></div>
-            <div class="glass p-4 text-center border-b-2 border-[#bc13fe]"><p class="text-[9px] text-gray-500 uppercase">Perk 2</p><span class="text-xs font-bold uppercase">Quick Fix</span></div>
-            <div class="glass p-4 text-center border-b-2 border-[#bc13fe]"><p class="text-[9px] text-gray-500 uppercase">Perk 3</p><span class="text-xs font-bold uppercase">Toughness</span></div>
-            <div class="glass p-4 text-center"><p class="text-[9px] text-gray-500 uppercase">Lethal</p><span class="text-xs font-bold uppercase">Molotov</span></div>
-            <div class="glass p-4 text-center"><p class="text-[9px] text-gray-500 uppercase">Tactical</p><span class="text-xs font-bold uppercase">Trophy</span></div>
-            <div class="glass p-4 text-center"><p class="text-[9px] text-gray-500 uppercase">Skill</p><span class="text-xs font-bold uppercase">K9 Unit</span></div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6 max-w-5xl mx-auto">
-        <h3 class="font-orbitron text-xl mb-10 tracking-[0.3em] text-white uppercase italic">Combat Performance History</h3>
-        <div class="space-y-4">
-            <div class="glass p-6 flex justify-between items-center victory-card">
-                <div>
-                    <span class="text-yellow-500 font-black italic text-xs tracking-widest mb-1 block uppercase">Victory MVP</span>
-                    <h5 class="text-2xl font-bold uppercase">Ranked Domination</h5>
-                    <p class="text-[10px] text-gray-500 uppercase mt-1 italic">Impact: 200 // Peak Score 6609</p>
+        <section class="p-6 max-w-2xl mx-auto">
+            <div class="glass p-6 border-r-4 border-[#bc13fe]">
+                <h3 class="font-orbitron text-[10px] mb-6 tracking-widest text-gray-400 uppercase">Velocity Log: Dec 26</h3>
+                <div class="flex justify-between items-end gap-2 h-24">
+                    <div class="w-full bg-white/5 h-[40%] relative"><span class="absolute -top-5 left-0 text-[8px] text-gray-600">M-I</span></div>
+                    <div class="w-full bg-white/10 h-[60%] relative"></div>
+                    <div class="w-full bg-[#bc13fe]/40 h-[100%] relative"><span class="absolute -top-5 left-0 text-[8px] text-[#bc13fe] font-bold">M-III</span></div>
                 </div>
-                <div class="text-right">
-                    <span class="font-orbitron text-4xl font-black italic text-white underline decoration-[#bc13fe]">70/8/30</span>
-                </div>
+                <p class="text-[10px] text-right mt-4 text-gray-500 uppercase font-black">Efficiency: +2 Tiers in 45m</p>
             </div>
+        </section>
 
-            <div class="glass p-6 flex justify-between items-center victory-card opacity-80">
-                <div>
-                    <span class="text-yellow-500 font-black italic text-xs tracking-widest mb-1 block uppercase">Victory MVP</span>
-                    <h5 class="text-2xl font-bold uppercase">Ranked Hardpoint</h5>
-                    <p class="text-[10px] text-gray-500 uppercase mt-1 italic">Impact: 198</p>
-                </div>
-                <div class="text-right">
-                    <span class="font-orbitron text-4xl font-black italic text-white">50/4/24</span>
-                </div>
+        <section class="p-6 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="glass p-6 relative overflow-hidden">
+                <div class="absolute right-2 top-2 text-[8px] text-[#bc13fe] font-black border border-[#bc13fe] px-1 italic">PRIMARY</div>
+                <h4 class="font-orbitron font-black text-2xl mb-1 italic">BP50</h4>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Suppressor / Leroy / Folded / Aim Assist</div>
             </div>
-        </div>
-    </section>
+            <div class="glass p-6 relative overflow-hidden opacity-80">
+                <div class="absolute right-2 top-2 text-[8px] text-gray-400 font-black border border-gray-400 px-1 italic">SUPPORT</div>
+                <h4 class="font-orbitron font-black text-2xl mb-1 italic">RPD</h4>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-widest italic">Road Mongrel Variant</div>
+            </div>
+        </section>
 
-    <footer class="py-10 text-center opacity-30 border-t border-white/5">
-        <p class="text-[10px] font-orbitron tracking-[0.5em] uppercase italic">&copy; 2025 UNS2024 // Terminal Secured</p>
-    </footer>
+        <footer class="py-12 text-center text-[10px] font-orbitron text-gray-700 tracking-[0.5em] uppercase italic">
+            &copy; 2025 // UNS2024 // Mission Log Secured
+        </footer>
+    </main>
 
     <script>
-        // Promotion Time Check (GMT 03:00 - 03:15)
-        function checkPromotionTime() {
+        // Update GMT Clock
+        function updateClock() {
             const now = new Date();
-            const hours = now.getUTCHours();
-            const minutes = now.getUTCMinutes();
-            if (hours === 3 && minutes >= 0 && minutes <= 15) { launchConfetti(); }
+            document.getElementById('time-display').innerText = now.toUTCString().split(' ')[4] + ' GMT';
         }
+        setInterval(updateClock, 1000);
 
-        function launchConfetti() {
-            const duration = 15 * 1000;
-            const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
-            const interval = setInterval(function() {
-                const timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-                const particleCount = 50 * (timeLeft / duration);
-                confetti({ ...defaults, particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#bc13fe', '#ffffff', '#7a00ff'] });
-            }, 250);
-        }
-
-        async function syncData() {
+        async function initTerminal() {
+            const prog = document.getElementById('progress');
+            const status = document.getElementById('status-text');
             const v = new Date().getTime();
+
+            // Simulate loading phases
+            prog.style.width = '30%'; status.innerText = "Bypassing Cache [30%]";
+            
             try {
+                // Fetch Data
                 const res = await fetch(`stats.json?v=${v}`);
-                const d = await res.json();
-                if(d.level) document.getElementById('lvl').innerText = d.level;
-            } catch (e) { console.log("Local Sync Active"); }
+                const historyRes = await fetch(`stats_history.json?v=${v}`);
+                const data = await res.json();
+                const history = await historyRes.json();
+
+                prog.style.width = '70%'; status.innerText = "Syncing History [70%]";
+
+                // Display Data
+                document.getElementById('kd-main').innerText = data.kdRatio;
+                document.getElementById('kills-main').innerText = data.lifetimeKills.toLocaleString();
+                document.getElementById('mvp-main').innerText = data.mvpCount;
+
+                // Calculate Deltas if history exists
+                if (history.length > 1) {
+                    const prev = history[history.length - 2];
+                    
+                    const kdDiff = (data.kdRatio - prev.kd).toFixed(2);
+                    if(kdDiff != 0) {
+                        document.getElementById('kd-delta').innerText = kdDiff > 0 ? `+${kdDiff}` : kdDiff;
+                        document.getElementById('kd-delta').className = kdDiff > 0 ? "delta-up" : "delta-down";
+                    }
+
+                    const killDiff = data.lifetimeKills - prev.kills;
+                    if(killDiff > 0) {
+                        document.getElementById('kills-delta').innerText = `(+${killDiff})`;
+                    }
+                }
+
+            } catch (e) { status.innerText = "Offline Buffer Active"; }
+
+            prog.style.width = '100%'; status.innerText = "Access Granted [100%]";
+            
+            // Fade out loader
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('content').classList.add('terminal-active');
+                    checkCelebration();
+                }, 800);
+            }, 500);
+        }
+
+        function checkCelebration() {
+            const h = new Date().getUTCHours();
+            const m = new Date().getUTCMinutes();
+            if (h === 3 && m <= 15) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#bc13fe', '#ffffff'] });
+            }
         }
 
         function shareIntel() {
             if (navigator.share) {
-                navigator.share({ title: 'UNS2024 INTEL', text: 'Master III Operator Profile Verified.', url: window.location.href });
+                navigator.share({ title: 'UNS2024 INTEL', text: 'Master III Verified.', url: window.location.href });
             }
         }
 
-        window.onload = () => { syncData(); checkPromotionTime(); };
+        window.onload = initTerminal;
     </script>
 </body>
 </html>
