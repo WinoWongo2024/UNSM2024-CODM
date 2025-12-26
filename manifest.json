@@ -1,0 +1,16 @@
+{
+  "name": "UNS2024 Tactical Terminal",
+  "short_name": "UNS2024",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#0a0a0c",
+  "theme_color": "#bc13fe",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/625/625540.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
