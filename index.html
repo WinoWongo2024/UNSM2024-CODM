@@ -2,147 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNotSeeMe2024 | Master Rank Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UNotSeeMe2024 | MASTER TIER</title>
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
-
-        :root {
-            --neon-purple: #bc13fe;
-            --metallic-silver: #C0C0C0;
-            --dark-bg: #0a0a0c;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-        }
-
+        :root { --neon-purple: #bc13fe; --dark-bg: #0a0a0c; }
+        body { background-color: var(--dark-bg); color: white; font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
-
-        .hero-gradient {
-            background: linear-gradient(180deg, rgba(188, 19, 254, 0.1) 0%, rgba(10, 10, 12, 1) 100%);
-        }
-
-        .stat-card {
-            background: rgba(192, 192, 192, 0.05);
-            backdrop-filter: blur(10px);
-            border-left: 4px solid var(--neon-purple);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            background: rgba(188, 19, 254, 0.15);
-            transform: scale(1.02);
-        }
-
-        .armory-card {
-            background: linear-gradient(145deg, #1a1a1f, #0a0a0c);
-            border: 1px solid rgba(192, 192, 192, 0.2);
-        }
-
-        .glitch-effect:hover {
-            text-shadow: 2px 0 var(--neon-purple), -2px 0 #00ffff;
-        }
-
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #0a0a0c; }
-        ::-webkit-scrollbar-thumb { background: var(--neon-purple); }
+        .scanner-line { height: 2px; background: var(--neon-purple); position: absolute; width: 100%; top: 0; animation: scan 3s linear infinite; opacity: 0.3; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(188, 19, 254, 0.2); }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="font-orbitron text-xl font-black tracking-tighter italic text-white uppercase">
-            UNotSeeMe<span class="text-[#bc13fe]">2024</span>
+    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex justify-between items-center">
+        <div class="font-orbitron font-black italic text-lg tracking-tighter">
+            UNS<span class="text-[#bc13fe]">2024</span> // <span id="nav-rank" class="text-xs text-gray-400">MASTER I</span>
         </div>
-        <div class="space-x-6 hidden md:flex text-sm font-bold uppercase tracking-widest">
-            <a href="#stats" class="hover:text-[#bc13fe] transition">Intel</a>
-            <a href="#armory" class="hover:text-[#bc13fe] transition">Armory</a>
-            <span class="text-gray-500">|</span>
-            <span class="text-[#bc13fe] font-orbitron">SEASON 4-5 '25</span>
-        </div>
+        <button onclick="shareIntel()" class="text-[#bc13fe] bg-white/5 p-2 rounded-full">
+            <i class="fas fa-share-nodes"></i>
+        </button>
     </nav>
 
-    <section class="relative h-screen flex flex-col justify-center items-center text-center px-4 hero-gradient">
-        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
-        
-        <h2 class="font-orbitron text-sm md:text-xl tracking-[0.5em] text-gray-400 uppercase mb-2 animate-pulse">Master Tier Operator</h2>
-        <h1 class="font-orbitron text-6xl md:text-9xl font-black italic glitch-effect mb-4 leading-none uppercase">
-            5.0 KD <span class="text-[#bc13fe]">Slayer</span>
-        </h1>
-        <p class="max-w-md text-gray-400 font-medium tracking-wide border-l-2 border-[#bc13fe] pl-4">
-            Dominating the 2025 Circuit. Specialized in high-aggression BP50/USS9 combat roles.
-        </p>
-        
-        <div class="mt-10 flex gap-4">
-            <a href="#stats" class="px-8 py-3 bg-[#bc13fe] text-black font-black uppercase skew-x-[-10deg] hover:bg-white transition cursor-pointer">Live Intel</a>
-            <a href="#armory" class="px-8 py-3 border border-white text-white font-black uppercase skew-x-[-10deg] hover:bg-white hover:text-black transition cursor-pointer">Armory</a>
+    <section class="relative min-h-screen flex flex-col justify-center items-center p-6 pt-24 text-center">
+        <div class="scanner-line"></div>
+        <div class="mb-4 inline-block px-3 py-1 border border-[#bc13fe] text-[#bc13fe] text-[10px] font-orbitron uppercase tracking-widest animate-pulse">
+            Terminal Active: S4-S5 2025
         </div>
-    </section>
+        <h1 class="font-orbitron text-5xl font-black italic leading-none mb-2 uppercase">5.0 KD <span class="text-[#bc13fe]">Slayer</span></h1>
+        <p class="text-gray-500 font-bold tracking-widest text-xs mb-8 uppercase">ID: <span id="hero-id">***WUN</span></p>
 
-    <section id="stats" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-            <div>
-                <h3 class="font-orbitron text-2xl inline-block border-b-2 border-[#bc13fe]">OPERATOR OVERVIEW</h3>
-                <p class="text-gray-500 uppercase tracking-tighter mt-2 italic font-bold">
-                    DESIGNATION: <span id="display-id" class="text-white">***WUN</span>
-                </p>
+        <div class="grid grid-cols-2 gap-3 w-full max-w-md">
+            <div class="glass p-4 text-left">
+                <p class="text-[10px] text-gray-500 uppercase font-bold">Level</p>
+                <h2 id="lvl" class="text-3xl font-orbitron font-black italic">168</h2>
             </div>
-            <div class="bg-zinc-800/50 px-6 py-3 border-r-4 border-[#bc13fe] text-right">
-                <span class="text-xs text-[#bc13fe] block uppercase font-bold tracking-widest">Active Season</span>
-                <span class="font-orbitron font-black text-2xl text-white italic">S4-S5 2025</span>
+            <div class="glass p-4 text-left border-r-2 border-[#bc13fe]">
+                <p class="text-[10px] text-gray-500 uppercase font-bold">Rank</p>
+                <h2 id="rank" class="text-3xl font-orbitron font-black italic text-[#bc13fe]">M-I</h2>
+            </div>
+            <div class="glass p-4 text-left opacity-50">
+                <p class="text-[10px] text-gray-500 uppercase font-bold">Accuracy</p>
+                <h2 class="text-xl font-orbitron italic">ANALYZING...</h2>
+            </div>
+            <div class="glass p-4 text-left opacity-50">
+                <p class="text-[10px] text-gray-500 uppercase font-bold">Win Rate</p>
+                <h2 class="text-xl font-orbitron italic">WAITING...</h2>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="stat-card p-8 relative overflow-hidden group">
-                <i class="fas fa-medal absolute -right-4 -bottom-4 text-8xl opacity-10 group-hover:opacity-20 transition"></i>
-                <p class="text-xs uppercase tracking-widest text-gray-400">Combat Level</p>
-                <h4 id="display-level" class="text-7xl font-black font-orbitron italic">168</h4>
-                <p class="text-[#bc13fe] text-sm mt-2 font-bold uppercase">Prestige Elite</p>
-            </div>
-
-            <div class="stat-card p-8 relative overflow-hidden group border-l-4 border-silver bg-white/10">
-                <i class="fas fa-crown absolute -right-4 -bottom-4 text-8xl opacity-10 group-hover:opacity-20 transition"></i>
-                <p class="text-xs uppercase tracking-widest text-gray-400">MP Rank Tier</p>
-                <h4 id="display-rank" class="text-7xl font-black font-orbitron italic text-[#bc13fe]">MASTER I</h4>
-                <p class="text-white text-sm mt-2 uppercase font-bold tracking-widest">Ranked Expert</p>
-            </div>
-
-            <div class="stat-card p-8 relative overflow-hidden group">
-                <i class="fas fa-shield-halved absolute -right-4 -bottom-4 text-8xl opacity-10 group-hover:opacity-20 transition"></i>
-                <p class="text-xs uppercase tracking-widest text-gray-400">Deployment</p>
-                <h4 class="text-7xl font-black font-orbitron italic">1,000+</h4>
-                <p class="text-gray-400 text-sm mt-2 uppercase">Games Verified</p>
+        <div class="mt-10 grid grid-cols-1 w-full max-w-md gap-4">
+            <a href="#armory" class="bg-[#bc13fe] text-black font-black py-4 font-orbitron uppercase skew-x-[-10deg]">Open Armory</a>
+            <div class="text-[10px] text-gray-600 font-orbitron mt-4 tracking-tighter uppercase">
+                &copy; 2025 // UNotSeeMe2024 // Secure Connection Verified
             </div>
         </div>
     </section>
-
-    <footer class="py-12 text-center border-t border-white/10">
-        <p class="text-xs text-gray-500 font-orbitron uppercase tracking-[0.3em] mb-4">Last Intel Sync: 26/12/2025</p>
-        <div class="flex justify-center gap-8 mb-8 text-2xl">
-            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="hover:text-[#bc13fe] transition"><i class="fab fa-discord"></i></a>
-        </div>
-        <p class="text-[10px] text-gray-700 font-sans uppercase tracking-widest">&copy; 2025 UNotSeeMe2024 | CODM OPERATOR PROFILE</p>
-    </footer>
 
     <script>
-        async function updateStats() {
+        // CACHE BUSTER LOGIC: Forces fresh data every load
+        async function fetchLiveStats() {
+            const cacheBuster = new Date().getTime(); 
             try {
-                const response = await fetch('stats.json');
+                const response = await fetch(`stats.json?v=${cacheBuster}`);
                 const data = await response.json();
-                if(data.level) document.getElementById('display-level').innerText = data.level;
-                if(data.rank) document.getElementById('display-rank').innerText = data.rank;
-                if(data.playerID) document.getElementById('display-id').innerText = data.playerID;
-            } catch (err) { console.log('Live data synced via static definitions.'); }
+                
+                document.getElementById('lvl').innerText = data.level;
+                document.getElementById('rank').innerText = data.rank;
+                document.getElementById('nav-rank').innerText = data.rank;
+                document.getElementById('hero-id').innerText = data.playerID;
+            } catch (e) {
+                console.log("Using local cache...");
+            }
         }
-        updateStats();
+
+        // SHARE API: Works like a real app
+        function shareIntel() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'UNotSeeMe2024 Pro Intel',
+                    text: 'Check out my Master I CODM stats!',
+                    url: window.location.href
+                });
+            }
+        }
+
+        window.onload = fetchLiveStats;
     </script>
 </body>
 </html>
