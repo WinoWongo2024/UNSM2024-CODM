@@ -1,146 +1,146 @@
-l<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>UNS2024 | MASTER TIER OPERATOR</title>
-    <meta name="theme-color" content="#0a0a0c">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="manifest.json">
-    
+    <title>UNS2024 | MASTER OPERATOR PROFILE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
-        :root { --neon-purple: #bc13fe; --metallic: #C0C0C0; --dark: #0a0a0c; }
+        :root { --neon-purple: #bc13fe; --dark: #0a0a0c; }
         body { background-color: var(--dark); color: white; font-family: 'Rajdhani', sans-serif; }
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        
-        /* Tactical Animations */
-        .scanline { width: 100%; height: 100px; z-index: 10; position: absolute; background: linear-gradient(0deg, transparent 0%, rgba(188, 19, 254, 0.1) 50%, transparent 100%); animation: move 4s linear infinite; pointer-events: none; }
-        @keyframes move { 0% { top: -100px; } 100% { top: 100%; } }
-        
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(192, 192, 192, 0.1); }
-        .neon-text { text-shadow: 0 0 10px rgba(188, 19, 254, 0.8); }
-        .skew-btn { transform: skewX(-15deg); transition: all 0.3s ease; }
-        .skew-btn:hover { transform: skewX(-15deg) scale(1.05); background: white; color: black; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(188, 19, 254, 0.2); }
+        .neon-border-left { border-left: 4px solid var(--neon-purple); }
+        .loadout-card { background: linear-gradient(145deg, #15151a, #0a0a0c); border: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <div class="scanline"></div>
-
-    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex justify-between items-center border-b border-[#bc13fe]/20">
-        <div class="font-orbitron font-black italic text-xl tracking-tighter uppercase">
-            UNS<span class="text-[#bc13fe]">2024</span> <span class="text-[10px] text-gray-500 ml-2">v4.0.25</span>
+    <section class="relative min-h-screen flex flex-col justify-center items-center p-6 text-center bg-[radial-gradient(circle_at_center,_var(--neon-purple)_0%,_transparent_70%)] bg-opacity-10">
+        <div class="mb-4 inline-block px-3 py-1 glass border-l-4 border-[#bc13fe] text-[#bc13fe] text-[10px] font-orbitron uppercase tracking-widest">
+            Identity Verified: Ghost - Jawbone
         </div>
-        <div class="flex items-center gap-4">
-            <div class="hidden md:block text-right">
-                <p class="text-[10px] text-gray-500 uppercase leading-none">Status</p>
-                <p class="text-xs font-bold text-[#bc13fe]">MASTER I // ACTIVE</p>
-            </div>
-            <button onclick="shareIntel()" class="w-10 h-10 rounded-full glass border border-[#bc13fe]/40 flex items-center justify-center text-[#bc13fe]">
-                <i class="fas fa-share-nodes"></i>
-            </button>
-        </div>
-    </nav>
-
-    <section class="relative min-h-screen flex flex-col justify-center items-center p-6 text-center">
-        <div class="mb-6 px-4 py-1 glass border-l-4 border-[#bc13fe]">
-            <span class="text-[10px] font-orbitron tracking-[0.4em] text-gray-400">OPERATOR: GHOST-JAWBONE</span>
-        </div>
+        <h1 class="font-orbitron text-7xl md:text-9xl font-black italic tracking-tighter uppercase mb-2">4.28 <span class="text-[#bc13fe]">KD</span></h1>
+        <p class="text-gray-400 font-bold tracking-[0.4em] text-xs mb-10 uppercase">S4-S5 2025 // Master I Tier</p>
         
-        <h1 class="font-orbitron text-6xl md:text-8xl font-black italic mb-2 tracking-tighter uppercase">
-            <span id="display-kd" class="neon-text">4.28</span> <span class="text-white">KD</span>
-        </h1>
-        <p class="text-gray-400 font-bold tracking-[0.5em] text-xs mb-10 uppercase">S4-S5 2025 // ID: <span id="display-id">***WUN</span></p>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl">
-            <div class="glass p-5 text-left border-t border-[#bc13fe]/30">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl mb-12">
+            <div class="glass p-5 text-left neon-border-left">
                 <p class="text-[10px] text-gray-500 uppercase font-black">Accuracy</p>
-                <h2 id="display-acc" class="text-3xl font-orbitron font-black italic">26.58%</h2>
+                <h2 class="text-3xl font-orbitron font-black italic">26.58%</h2>
             </div>
-            <div class="glass p-5 text-left border-t border-[#bc13fe]/30">
+            <div class="glass p-5 text-left neon-border-left">
                 <p class="text-[10px] text-gray-500 uppercase font-black">Lifetime Kills</p>
-                <h2 id="display-kills" class="text-3xl font-orbitron font-black italic text-[#bc13fe]">21,095</h2>
+                <h2 class="text-3xl font-orbitron font-black italic text-[#bc13fe]">21,095</h2>
             </div>
-            <div class="glass p-5 text-left border-t border-[#bc13fe]/30">
-                <p class="text-[10px] text-gray-500 uppercase font-black">Total Games</p>
-                <h2 id="display-games" class="text-3xl font-orbitron font-black italic">1,083</h2>
-            </div>
-            <div class="glass p-5 text-left border-t border-[#bc13fe]/30">
+            <div class="glass p-5 text-left neon-border-left">
                 <p class="text-[10px] text-gray-500 uppercase font-black">MVP Medals</p>
-                <h2 id="display-mvp" class="text-3xl font-orbitron font-black italic">380</h2>
+                <h2 class="text-3xl font-orbitron font-black italic">380</h2>
             </div>
-        </div>
-
-        <div class="mt-12 flex flex-col md:flex-row gap-4 w-full max-w-md">
-            <button class="skew-btn bg-[#bc13fe] text-black font-black py-4 font-orbitron uppercase flex-1">Weapon Armory</button>
-            <button class="skew-btn border border-white text-white font-black py-4 font-orbitron uppercase flex-1">Intel Logs</button>
+            <div class="glass p-5 text-left neon-border-left">
+                <p class="text-[10px] text-gray-500 uppercase font-black">Games</p>
+                <h2 class="text-3xl font-orbitron font-black italic">1,083</h2>
+            </div>
         </div>
     </section>
 
-    <section class="py-10 px-6 max-w-5xl mx-auto">
-        <h3 class="font-orbitron text-xs mb-6 tracking-[0.4em] text-[#bc13fe] uppercase">Recent Combat Logs</h3>
+    <section id="armory" class="py-20 px-6 max-w-6xl mx-auto">
+        <h3 class="font-orbitron text-xl mb-10 tracking-[0.3em] text-[#bc13fe] uppercase italic">Active Combat Loadout</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="loadout-card p-6 rounded-lg relative overflow-hidden">
+                <div class="flex justify-between items-start mb-6">
+                    <h4 class="text-4xl font-black italic font-orbitron">BP50</h4>
+                    <span class="text-[10px] bg-[#bc13fe] text-black px-2 py-1 font-bold">PRIMARY</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-xs uppercase tracking-widest text-gray-400 font-bold">
+                    <div class="border-b border-white/10 pb-2">Muzzle: Agency Suppressor</div>
+                    <div class="border-b border-white/10 pb-2">Barrel: Leroy Custom</div>
+                    <div class="border-b border-white/10 pb-2">Stock: Folded Stock</div>
+                    <div class="border-b border-white/10 pb-2">Laser: Aim Assist</div>
+                </div>
+            </div>
+
+            <div class="loadout-card p-6 rounded-lg">
+                <div class="flex justify-between items-start mb-6">
+                    <h4 class="text-4xl font-black italic font-orbitron text-[#bc13fe]">RPD</h4>
+                    <span class="text-[10px] border border-[#bc13fe] text-[#bc13fe] px-2 py-1 font-bold italic">ROAD MONGREL</span>
+                </div>
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-widest italic">Sustained Suppression Build</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-4 mt-8">
+            <div class="glass p-3 text-center">
+                <p class="text-[9px] text-gray-500 uppercase mb-1">Skill</p>
+                <span class="text-xs font-bold uppercase">K9 Unit</span>
+            </div>
+            <div class="glass p-3 text-center">
+                <p class="text-[9px] text-gray-500 uppercase mb-1">Lethal</p>
+                <span class="text-xs font-bold uppercase">Molotov</span>
+            </div>
+            <div class="glass p-3 text-center border-b-2 border-[#bc13fe]">
+                <p class="text-[9px] text-[#bc13fe] uppercase mb-1">Perk 1</p>
+                <span class="text-xs font-bold uppercase">Fast Recover</span>
+            </div>
+            <div class="glass p-3 text-center border-b-2 border-[#bc13fe]">
+                <p class="text-[9px] text-[#bc13fe] uppercase mb-1">Perk 2</p>
+                <span class="text-xs font-bold uppercase">Quick Fix</span>
+            </div>
+            <div class="glass p-3 text-center border-b-2 border-[#bc13fe]">
+                <p class="text-[9px] text-[#bc13fe] uppercase mb-1">Perk 3</p>
+                <span class="text-xs font-bold uppercase">Toughness</span>
+            </div>
+            <div class="glass p-3 text-center">
+                <p class="text-[9px] text-gray-500 uppercase mb-1">Tactical</p>
+                <span class="text-xs font-bold uppercase">Trophy</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-5xl mx-auto bg-zinc-900/30">
+        <h3 class="font-orbitron text-xl mb-10 tracking-[0.3em] text-white uppercase italic">Live Intel: Recent Deployments</h3>
         <div class="space-y-4">
-            <div class="glass p-4 flex justify-between items-center border-r-4 border-yellow-500 relative overflow-hidden">
-                <div class="absolute left-0 top-0 h-full w-1 bg-yellow-500 shadow-[0_0_15px_#eab308]"></div>
+            <div class="glass p-6 flex justify-between items-center border-r-8 border-yellow-500">
                 <div>
-                    <span class="text-yellow-500 font-black italic text-sm tracking-widest">VICTORY MVP</span>
-                    <p class="text-white font-bold text-lg uppercase leading-none">Ranked Hardpoint</p>
-                    <p class="text-[10px] text-gray-500 uppercase mt-1">Impact: 198 // Dec 25, 2025</p>
+                    <span class="text-yellow-500 font-black italic text-xs tracking-[0.2em] mb-1 block">VICTORY MVP</span>
+                    <h5 class="text-2xl font-bold uppercase">Ranked Hardpoint</h5>
+                    <p class="text-[10px] text-gray-500 mt-1 uppercase">16:07:42 // Dec 25, 2025</p>
                 </div>
                 <div class="text-right">
-                    <span class="font-orbitron text-2xl font-black italic text-white">50 / 4 / 24</span>
-                    <p class="text-[10px] text-[#bc13fe] uppercase font-bold">Performance Elite</p>
+                    <span class="font-orbitron text-4xl font-black italic text-white">50/4/24</span>
+                    <p class="text-[10px] text-[#bc13fe] uppercase font-bold mt-1">Impact Rating: 198</p>
                 </div>
             </div>
-            
-            <div class="glass p-4 flex justify-between items-center border-r-4 border-white/40">
+
+            <div class="glass p-6 flex justify-between items-center border-r-8 border-yellow-500">
                 <div>
-                    <span class="text-gray-400 font-black italic text-sm tracking-widest uppercase italic">EXFIL SUCCESS</span>
-                    <p class="text-white font-bold text-lg uppercase leading-none">DMZ: Recon</p>
+                    <span class="text-yellow-500 font-black italic text-xs tracking-[0.2em] mb-1 block">VICTORY MVP</span>
+                    <h5 class="text-2xl font-bold uppercase">Ranked TDM</h5>
+                    <p class="text-[10px] text-gray-500 mt-1 uppercase">14:16:28 // Dec 25, 2025</p>
                 </div>
                 <div class="text-right">
-                    <span class="font-orbitron text-2xl font-black italic text-white">$1.14M+</span>
-                    <p class="text-[10px] text-gray-500 uppercase">Total Assets Secured</p>
+                    <span class="font-orbitron text-4xl font-black italic text-white">14/3/6</span>
+                    <p class="text-[10px] text-[#bc13fe] uppercase font-bold mt-1">Impact Rating: 194</p>
+                </div>
+            </div>
+
+            <div class="glass p-6 flex justify-between items-center border-r-8 border-silver">
+                <div>
+                    <span class="text-silver font-black italic text-xs tracking-[0.2em] mb-1 block">NO. 2 RANKING</span>
+                    <h5 class="text-2xl font-bold uppercase">Shoryu & Hadoken</h5>
+                    <p class="text-[10px] text-gray-500 mt-1 uppercase">14:30:38 // Dec 25, 2025</p>
+                </div>
+                <div class="text-right">
+                    <span class="font-orbitron text-4xl font-black italic text-white">19/10/0</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 text-center opacity-40">
-        <p class="text-[10px] font-orbitron tracking-widest">&copy; 2025 UNOTSEEME2024 // ALL RIGHTS RESERVED</p>
+    <footer class="py-10 text-center opacity-20 border-t border-white/5">
+        <p class="text-[10px] font-orbitron tracking-[0.5em]">&copy; 2025 UNotSeeMe2024 // PRO CODM PORTFOLIO</p>
     </footer>
 
-    <script>
-        // Cache-Busting Sync Logic
-        async function syncOperatorData() {
-            const v = new Date().getTime();
-            try {
-                const res = await fetch(`stats.json?v=${v}`);
-                const d = await res.json();
-                
-                if(d.level) document.getElementById('display-kd').innerText = d.kdRatio;
-                if(d.rank) document.getElementById('nav-rank').innerText = d.rank;
-                if(d.accuracy) document.getElementById('display-acc').innerText = d.accuracy;
-                if(d.lifetimeKills) document.getElementById('display-kills').innerText = d.lifetimeKills.toLocaleString();
-                if(d.gamesPlayed) document.getElementById('display-games').innerText = d.gamesPlayed.toLocaleString();
-                if(d.mvpCount) document.getElementById('display-mvp').innerText = d.mvpCount;
-            } catch (e) { console.warn("Terminal running on local buffer."); }
-        }
-
-        function shareIntel() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'UNS2024 OPERATOR PROFILE',
-                    text: 'Master I Tier Verified.',
-                    url: window.location.href
-                });
-            }
-        }
-
-        window.onload = syncOperatorData;
-    </script>
 </body>
 </html>
